@@ -67,4 +67,4 @@ jobs:
 
       - name: Trigger Render redeploy
         run: |
-          curl -X POST -H "Authorization: Bearer ${{ secrets.RENDER_API }}" -H "Content-Type: application/json" https://api.render.com/deploy/srv-d300unn5r7bs73atme2g
+          curl -X POST ${{ secrets.RENDER_URL }}
