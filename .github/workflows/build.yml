@@ -57,7 +57,7 @@ jobs:
         run: |
           docker run -d --name test-container -p 9001:9000 flabbers/nodetest:latest
           sleep 3
-          curl http://localhost:1000
+          curl http://localhost:9001
           docker stop test-container
           docker rm test-container
 
