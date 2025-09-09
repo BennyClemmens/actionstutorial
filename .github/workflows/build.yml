@@ -17,14 +17,20 @@ jobs:
           node-version: 20
           # cache: 'yarn'
 
-      - name: Install Yarn 2
-        run: npm install -g yarn
+      # - name: Install Yarn 2
+      #   run: npm install -g yarn
 
       - name: Enable Corepack
         run: corepack enable
 
       - name: Install dependencies
         run: yarn install --mode=update-lockfile
+
+      - name: Upload yarn.lock artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: yarn-lock
+          path: yarn.lock
 
       - name: Build project
         run: yarn build
