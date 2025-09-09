@@ -23,11 +23,8 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
-      # - name: Use specific Yarn version
-      #   run: corepack prepare yarn@3.6.0 --activate
-
       - name: Install dependencies
-        run: yarn install --immutable=false
+        run: yarn install --mode=update-lockfile
 
       - name: Build project
         run: yarn build
