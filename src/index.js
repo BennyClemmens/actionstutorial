@@ -2,7 +2,7 @@ import express from 'express';
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('Hello World vanuit GitHub Actions, now updated with APIHOOK');
+  res.send('Hello World vanuit GitHub Actions, now updated with APIHOOK and updated again');
 });
 
 const PORT = 9000;
