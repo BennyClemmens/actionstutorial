@@ -1,0 +1,35 @@
+name: Node Build & Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+
+      - name: Install Yarn 2
+        run: npm install -g yarn
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build project
+        run: yarn build
+
+      - name: Start server in background
+        run: nohup yarn start &
+      
+      - name: Test API
+        run: |
+          sleep 2
+          curl http://localhost:9000
