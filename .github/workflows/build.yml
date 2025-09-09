@@ -43,3 +43,23 @@ jobs:
         run: |
           sleep 2
           curl http://localhost:9000
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: docker build -t flabbers/nodetest:latest .
+
+      - name: Test Docker container
+        run: |
+          docker run -d --name test-container -p 9000:9000 yourusername/yourimage:latest
+          sleep 3
+          curl http://localhost:9000
+          docker stop test-container
+          docker rm test-container
+
+      - name: Push Docker image
+        run: docker push flabbers/nodetest:latest
